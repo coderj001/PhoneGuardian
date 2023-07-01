@@ -1,0 +1,47 @@
+version: '3'
+services:
+  db:
+    image: "postgres:alpine"
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "phoneguardian"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app_dev:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.dev
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    command: go run cmd/main.go
+    
+  # app_prod:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/Dockerfile.prod
+  #   ports:
+  #     - 8000:8000
+  #
+  # app_test:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/Dockerfile.test
+  #   command: go test ./...
+  #   depends_on:
+  #     - db
+
+
+volumes:
+   db_data:
