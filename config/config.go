@@ -24,7 +24,7 @@ func GetConfig() *Config {
 	return &Config{
 		DB: &DBConfig{
 			Dialect:  "postgres",
-			Host:     os.Getenv("HOST"),
+			Host:     os.Getenv("DB_HOST"),
 			Port:     port,
 			Username: os.Getenv("DB_USERNAME"),
 			Password: os.Getenv("DB_PASSWORD"),
