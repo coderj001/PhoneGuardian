@@ -4,9 +4,9 @@ ContactGuard API is a RESTful web service designed to provide functionality simi
 
 ## Project Task List
 
-- [ ] Set up the project structure
-- [ ] Define the API endpoints
-- [ ] Implement user registration functionality
+- [x] Set up the project structure
+- [x] Define the API endpoints
+- [x] Implement user registration functionality
 - [ ] Implement user authentication functionality
 - [ ] Create CRUD operations for users
 - [ ] Create CRUD operations for contacts

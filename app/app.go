@@ -44,6 +44,8 @@ func (a *App) Initialize(config *config.Config) {
 // setRouters sets the all required routers
 func (a *App) setRouters() {
 	a.Get("/health", a.handleRequest(handler.HealthCheck))
+
+	a.Post("/user/register", a.handleRequest(handler.RegisterUser))
 }
 
 // Get wraps the router for GET method
@@ -68,6 +70,7 @@ func (a *App) Delete(path string, f func(w http.ResponseWriter, r *http.Request)
 
 // Run the app on it's router
 func (a *App) Run(host string) {
+	log.Println("[+] server starting...")
 	log.Fatal(http.ListenAndServe(host, a.Router))
 }
 
