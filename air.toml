@@ -1,0 +1,34 @@
+root = "."
+build_dir = "build"
+tmp_dir = "tmp"
+log_dir = "log"
+
+[build]
+cmd = "go build -o /tmp/app ./cmd/main.go"
+bin = "/tmp/app"
+delay = 1000
+
+[run]
+watch_dirs = ["app", "config", "cmd"]
+exclude_dir = "docker"
+
+[[run.watch_ext]]
+ext = "go"
+
+[[run.watch_ext]]
+ext = "toml"
+
+[[run.watch_ext]]
+ext = "yml"
+
+[[run.watch_ext]]
+ext = "yaml"
+
+[[run.watch_ext]]
+ext = "mod"
+
+[[run.watch_ext]]
+ext = "sum"
+
+[misc]
+clean_on_exit = true

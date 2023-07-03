@@ -1,15 +1,30 @@
 FROM golang:1.20.5-alpine
 
+# Set Working Dir
 WORKDIR /app
 
+# Install nessery dependencies
 RUN apk --no-cache add \
     ca-certificates \
     git
 
+# Copy go.mod and go.sum
 COPY go.mod go.sum ./
 
+# Download all dependencies
 RUN go mod download
 
+# Install Air using the recommended install script
+RUN go install github.com/cosmtrek/air@latest
+
+# Verify Air installation
+RUN air -v
+
+# Copy the rest of your application code
 COPY . .
 
+# Expose port 8000
 EXPOSE 8000
+
+# Set the entrypoint to `air`. Note the full path to the air binary.
+ENTRYPOINT ["air", "-c", "air.toml"]

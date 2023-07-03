@@ -25,7 +25,6 @@ services:
       - .:/app
     depends_on:
       - db
-    command: go run cmd/main.go
     
   # app_prod:
   #   build:

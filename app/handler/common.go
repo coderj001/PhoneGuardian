@@ -29,7 +29,7 @@ func respondError(w http.ResponseWriter, code int, message string) {
 func HealthCheck(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	response := map[string]interface{}{
 		"status":  "Ok",
-		"message": "API is healthy",
+		"message": "API is healthy!",
 	}
 
 	respondJSON(w, http.StatusOK, response)
