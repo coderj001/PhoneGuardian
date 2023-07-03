@@ -1,4 +1,5 @@
 @baseURL = http://localhost:8000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg0NzQzNzMsImlhdCI6MTY4ODM4Nzk3M30.ylTfoDceEn7Zl5BkkK3ew6R46sl4RnTk-81rbq39O9k
 
 ### Test API
 GET {{baseURL}}/health
@@ -15,3 +16,21 @@ Content-Type: application/json
   "password": "password123"
 }
 
+### User Login
+POST {{baseURL}}/user/login
+Content-Type: application/json
+
+{
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+
+### Create Contact
+POST {{baseURL}}/contact
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "name": "neo ai",
+  "phone_number": "1234567891"
+}

@@ -30,5 +30,8 @@ ext = "mod"
 [[run.watch_ext]]
 ext = "sum"
 
+[[run.watch_ext]]
+ext = "http"
+
 [misc]
 clean_on_exit = true
