@@ -1,5 +1,5 @@
 @baseURL = http://localhost:8000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg0NzQzNzMsImlhdCI6MTY4ODM4Nzk3M30.ylTfoDceEn7Zl5BkkK3ew6R46sl4RnTk-81rbq39O9k
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg1NzgwMzQsImlhdCI6MTY4ODQ5MTYzNH0.03hUcVbQUOn6MX-FoWFcThvPF9PBgozJIhYWc0V9E6Q
 
 ### Test API
 GET {{baseURL}}/health
@@ -28,9 +28,9 @@ Content-Type: application/json
 ### Create Contact
 POST {{baseURL}}/contact
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg1NzgwMzQsImlhdCI6MTY4ODQ5MTYzNH0.03hUcVbQUOn6MX-FoWFcThvPF9PBgozJIhYWc0V9E6Q
 
 {
-  "user_id": 1,
   "name": "neo ai",
   "phone_number": "1234567891"
 }

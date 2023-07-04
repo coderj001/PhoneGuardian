@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"fmt"
 	"os"
 	"time"
 
@@ -29,4 +30,27 @@ func GenerateToken(userID uint) (string, error) {
 	}
 
 	return tokenString, nil
+}
+
+func ValidateToken(tokenString string) (*Claims, error) {
+	jwtSecretKey := os.Getenv("JWT_SECRET")
+
+	token, err := jwt.ParseWithClaims(tokenString, &Claims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(jwtSecretKey), nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	if _, ok := token.Claims.(*Claims); !ok || !token.Valid {
+		return nil, fmt.Errorf("invalid token")
+	}
+
+	claims, ok := token.Claims.(*Claims)
+	if !ok {
+		return nil, fmt.Errorf("invalid token")
+	}
+	
+	return claims, nil
 }
