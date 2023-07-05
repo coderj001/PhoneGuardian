@@ -2,9 +2,9 @@ package auth
 
 import (
 	"fmt"
-	"os"
 	"time"
 
+	"github.com/coderj001/phoneguardian/config"
 	"github.com/dgrijalva/jwt-go"
 )
 
@@ -13,8 +13,10 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
+
 func GenerateToken(userID uint) (string, error) {
-	jwtSecretKey := os.Getenv("JWT_SECRET")
+	conf := config.GetConfig()
+	jwtSecretKey := conf.JWTSecret
 	claims := Claims{
 		UserID: userID,
 		StandardClaims: jwt.StandardClaims{
@@ -33,7 +35,8 @@ func GenerateToken(userID uint) (string, error) {
 }
 
 func ValidateToken(tokenString string) (*Claims, error) {
-	jwtSecretKey := os.Getenv("JWT_SECRET")
+	conf := config.GetConfig()
+	jwtSecretKey := conf.JWTSecret
 
 	token, err := jwt.ParseWithClaims(tokenString, &Claims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(jwtSecretKey), nil

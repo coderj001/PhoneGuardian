@@ -7,6 +7,8 @@ import (
 
 type Config struct {
 	DB *DBConfig
+	JWTSecret string
+	Host string
 }
 
 type DBConfig struct {
@@ -31,5 +33,7 @@ func GetConfig() *Config {
 			Name:     os.Getenv("DB_NAME"),
 			Charset:  "utf8",
 		},
+		JWTSecret: os.Getenv("JWT_SECRET"),
+		Host: os.Getenv("HOST"),
 	}
 }
