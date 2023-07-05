@@ -51,6 +51,10 @@ func (a *App) setRouters() {
 	authMiddleware := middleware.AuthMiddleware(true)
 
 	a.Post("/contact", authMiddleware(a.handleRequest(handler.CreateContact)))
+
+	a.Post("/spam", a.handleRequest(handler.MarkNumberAsSpam))
+	
+	a.Get("/search", authMiddleware(a.handleRequest(handler.SeachContact)))
 }
 
 // Get wraps the router for GET method

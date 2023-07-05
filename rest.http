@@ -34,3 +34,21 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2
   "name": "neo ai",
   "phone_number": "1234567890"
 }
+
+### Mark as spam
+POST {{baseURL}}/spam
+Content-Type: application/json
+
+{
+  "phone_number": "1234567890"
+}
+
+### Search by Name
+GET {{baseURL}}/search?name=neo
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg2NTE4MzUsImlhdCI6MTY4ODU2NTQzNX0.9gUjhX9bpTU1xnV5BLmuUuWl9QrSiNs4iZezJ6vR8-s
+
+### Search by Phone Number
+GET {{baseURL}}/search?phone_number=1234567890
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg2NTE4MzUsImlhdCI6MTY4ODU2NTQzNX0.9gUjhX9bpTU1xnV5BLmuUuWl9QrSiNs4iZezJ6vR8-s
