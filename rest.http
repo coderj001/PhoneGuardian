@@ -28,7 +28,7 @@ Content-Type: application/json
 ### Create Contact
 POST {{baseURL}}/contact
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg1NzgwMzQsImlhdCI6MTY4ODQ5MTYzNH0.03hUcVbQUOn6MX-FoWFcThvPF9PBgozJIhYWc0V9E6Q
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg2NTE4MzUsImlhdCI6MTY4ODU2NTQzNX0.9gUjhX9bpTU1xnV5BLmuUuWl9QrSiNs4iZezJ6vR8-s
 
 {
   "name": "neo ai",

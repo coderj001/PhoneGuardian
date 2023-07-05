@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/coderj001/phoneguardian/app/auth"
@@ -24,23 +25,33 @@ func LoggingMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func AuthMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		tokenString := r.Header.Get("Authorization")
-		if tokenString == "" {
-			handler.RespondError(w, http.StatusUnauthorized, "Missing authorization token")
-			return
-		}
 
-		claims, err := auth.ValidateToken(tokenString)
+func AuthMiddleware(applyAuth bool) func(http.Handler) http.HandlerFunc {
+	return func(next http.Handler) http.HandlerFunc {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if applyAuth {
+				tokenString := r.Header.Get("Authorization")
+				if tokenString == "" {
+					handler.RespondError(w, http.StatusUnauthorized, "Missing authorization token")
+					return
+				}
+				bearerToken := strings.Split(tokenString, " ")
+				if len(bearerToken) == 2 {
+					tokenString = bearerToken[1]
+				}
 
-		if err != nil {
-			handler.RespondError(w, http.StatusUnauthorized, "Invalid authorization token")
-			return
-		}
+				claims, err := auth.ValidateToken(tokenString)
 
-		ctx := context.WithValue(r.Context(), "userID", claims.UserID)
-		next.ServeHTTP(w, r.WithContext(ctx))
+				if err != nil {
+					handler.RespondError(w, http.StatusUnauthorized, "Invalid authorization token")
+					return
+				}
 
-	})
+				ctx := context.WithValue(r.Context(), "userID", claims.UserID)
+				r = r.WithContext(ctx)
+			}
+
+			next.ServeHTTP(w, r)
+		})
+	}
 }

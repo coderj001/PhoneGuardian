@@ -48,7 +48,9 @@ func (a *App) setRouters() {
 	a.Post("/user/register", a.handleRequest(handler.RegisterUser))
 	a.Post("/user/login", a.handleRequest(handler.LoginUser))
 
-	a.Post("/contact", a.handleRequest(handler.CreateContact))
+	authMiddleware := middleware.AuthMiddleware(true)
+
+	a.Post("/contact", authMiddleware(a.handleRequest(handler.CreateContact)))
 }
 
 // Get wraps the router for GET method
