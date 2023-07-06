@@ -2,10 +2,12 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/coderj001/phoneguardian/app/auth"
 	"github.com/coderj001/phoneguardian/app/model"
+	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	// "golang.org/x/crypto/bcrypt"
 )
@@ -103,6 +105,32 @@ func LoginUser(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		UserID: user.ID,
 	}
 
+	respondJSON(w, http.StatusOK, response)
+
+}
+
+type UserDetailResponse struct {
+	Name        string `json:"name"`
+	PhoneNumber string `json:"phone_number"`
+	Email       string `json:"email"`
+}
+
+func GetUserDetailes(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	userID := vars["user_id"]
+	fmt.Println(userID)
+
+	var user model.User
+	if err := db.Find(&user, userID).Error; err != nil {
+		RespondError(w, http.StatusNotFound, "User not found")
+		return
+	}
+
+	response := UserDetailResponse{
+		Name:        user.Name,
+		PhoneNumber: user.PhoneNumber,
+		Email:       user.Email,
+	}
 	respondJSON(w, http.StatusOK, response)
 
 }
