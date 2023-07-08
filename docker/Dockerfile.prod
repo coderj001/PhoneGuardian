@@ -1,0 +1,29 @@
+############################
+##     Build Stage        ##
+############################
+FROM golang:alpine AS build-env
+
+RUN apk --no-cache add \
+    ca-certificates \
+    git \
+    build-base 
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN go build -o phoneguardian ./cmd/main.go
+
+############################
+##     Final Stage        ##
+############################
+FROM alpine:latest
+
+WORKDIR /app
+
+COPY --from=build-env /app/phoneguardian /app/
+
+ENTRYPOINT ./phoneguardian
+
