@@ -28,11 +28,11 @@ Content-Type: application/json
 ### Create Contact
 POST {{baseURL}}/contact
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg2NTE4MzUsImlhdCI6MTY4ODU2NTQzNX0.9gUjhX9bpTU1xnV5BLmuUuWl9QrSiNs4iZezJ6vR8-s
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg4MDA0MTMsImlhdCI6MTY4ODcxNDAxM30.nJhkx4n7VeoyQQ0hax5hsuYFG0Yo6Q4OIN3_cFqIGUw
 
 {
   "name": "neo ai",
-  "phone_number": "1234567890"
+  "phone_number": "1234567891"
 }
 
 ### Mark as spam
@@ -46,12 +46,12 @@ Content-Type: application/json
 ### Search by Name
 GET {{baseURL}}/search?name=neo
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg2NTE4MzUsImlhdCI6MTY4ODU2NTQzNX0.9gUjhX9bpTU1xnV5BLmuUuWl9QrSiNs4iZezJ6vR8-s
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg4MDA0MTMsImlhdCI6MTY4ODcxNDAxM30.nJhkx4n7VeoyQQ0hax5hsuYFG0Yo6Q4OIN3_cFqIGUw
 
 ### Search by Phone Number
 GET {{baseURL}}/search?phone_number=1234567890
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg2NTE4MzUsImlhdCI6MTY4ODU2NTQzNX0.9gUjhX9bpTU1xnV5BLmuUuWl9QrSiNs4iZezJ6vR8-s
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODg4MDA0MTMsImlhdCI6MTY4ODcxNDAxM30.nJhkx4n7VeoyQQ0hax5hsuYFG0Yo6Q4OIN3_cFqIGUw
 
 ### User Details
 GET {{baseURL}}/user/1

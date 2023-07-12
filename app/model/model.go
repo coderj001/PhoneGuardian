@@ -27,8 +27,10 @@ type Contact struct {
 // Spam represents a spam number model
 type Spam struct {
 	gorm.Model
-	PhoneNumber string `json:"phone_number" gorm:"unique_index"`
+	PhoneNumber string `json:"phone_number" gorm:"unique_index:idx_user_phone"`
+	UserID      uint   `json:"user_id" gorm:"unique_index:idx_user_phone"`
 }
+
 
 // SearchResult represents a search result model
 type SearchResult struct {

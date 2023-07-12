@@ -26,13 +26,15 @@ services:
     depends_on:
       - db
     
-  # app_prod:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/Dockerfile.prod
-  #   ports:
-  #     - 8000:8000
-  #
+  app_prod:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.prod
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+
   # app_test:
   #   build:
   #     context: .
